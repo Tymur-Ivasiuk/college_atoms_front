@@ -1,0 +1,16 @@
+.header {
+  background: #5ab6b3;
+  height: var(--header-height);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header > img {
+  height: 55px;
+}
+
+.header_title {
+  font-size: 30px;
+  color: #fff;
+}

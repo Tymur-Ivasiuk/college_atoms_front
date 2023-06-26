@@ -1,24 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import 'react-js-dropdavn/dist/index.css'
+import HeaderContainer from './components/Header/HeaderContainer';
+import Aside from './components/Aside/Aside';
+import { Route, Routes } from 'react-router-dom';
+import GradebookContainer from './components/Gradebook/GradebookContainer';
+import Login from './components/Login/Login';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HeaderContainer />
+
+      <main>
+        <Aside />
+
+        <div class="content">
+          <Routes>
+              <Route path='/gradebook' element={<GradebookContainer />}/>
+              <Route path='/login' element={<Login />}/>
+          </Routes>
+        </div>
+
+      </main>
+
+    </>
+
+    // <SimpleDropdown
+    //   options={data}
+    //   searchable
+    //   configs={{ position: { y: "bottom", x: "center" } }}
+    // />
   );
 }
 

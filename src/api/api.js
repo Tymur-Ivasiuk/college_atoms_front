@@ -34,7 +34,7 @@ export const GroupApi = {
 
     return instance.post('', params).then(response => response.data)
   },
-  setGrade(groupName, subjectName, studentName, dateInfo, mark) {
+  setGrade(groupName, subjectName, studentName, dateInfo, mark, comment) {
     const params = new URLSearchParams();
     params.append("actionType", "GIVE_GRADE_TO_STUDENTS")
     params.append("groupName", groupName)
@@ -42,6 +42,7 @@ export const GroupApi = {
     params.append("subject", subjectName)
     params.append("dateInfo", dateInfo)
     params.append("mark", mark)
+    params.append("comment", comment)
 
     //giveGradeToTheStudent("32-RS", "Прога", "Білецький Максим Володимирович", "2022.08.04", 12)
     return instance.post('', params).then(response => response.data)

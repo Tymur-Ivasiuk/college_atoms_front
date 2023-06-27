@@ -6,18 +6,18 @@ const SET_SUBJECTS_LIST = "SET_SUBJECTS_LIST";
 const SET_STUDENTS_NAMES = "SET_STUDENTS_NAMES";
 const SET_SUBJECT = "SET_SUBJECT";
 const TOGGLE_MODAL_IS_FETCHING = "TOGGLE_MODAL_IS_FETCHING";
-const SET_DATE_MONTH = "SET_DATE_MONTH"
+const SET_DATE_MONTH = "SET_DATE_MONTH";
+const SET_MODAL_IS_OPEN = "SET_MODAL_IS_OPEN";
 
 let initialState = {
   groupsNameList: [],
   subjectsList: [],
-  students: [
-    //{fullName: "Tymur", grades: Array.from(Array(31).keys())}
-  ],
+  students: [], //{fullName: "Tymur", grades: Array.from(Array(31).keys())}
   groupName: null,
   subject: null,
   modalIsFetching: false,
   dateMonth: 9,
+  modalIsOpen: false,
 };
 
 const gradebookReducer = (state = initialState, action) => {
@@ -44,6 +44,7 @@ const gradebookReducer = (state = initialState, action) => {
       return {
         ...state, 
         students: action.students,
+        modalIsOpen: false,
       }
 
     case SET_SUBJECT:
@@ -62,6 +63,12 @@ const gradebookReducer = (state = initialState, action) => {
       return {
         ...state,
         dateMonth: action.dateMonth
+      }
+
+    case SET_MODAL_IS_OPEN:
+      return {
+        ...state, 
+        modalIsOpen: action.isOpen,
       }
 
     default:
@@ -117,6 +124,12 @@ export const setDateMonth = (dateMonth) => {
     dateMonth
   }
 }
+export const setModalIsOpenAC = (isOpen) => {
+  return {
+    type: SET_MODAL_IS_OPEN,
+    isOpen,
+  }
+}
 
 export const getGroups = () => {
   return (dispatch) => {
@@ -137,17 +150,24 @@ export const setGroupName = (groupName) => {
 export const setSubject = (groupName, subject, month) => {
   return (dispatch) => {
     dispatch(setSubjectAC(subject))
-    GroupApi.getStudentsGrades(groupName, subject, month).then(data => {
+    return GroupApi.getStudentsGrades(groupName, subject, month).then(data => {
       dispatch(setStudentGrades(data.studentsGrades))
     })
   }
 }
-export const setNewGrade = (groupName, studentName, subject, dateMonth, dateNum, grade) => {
+export const setModalIsOpen = (isOpen) => {
+  return dispatch => {
+    dispatch(setModalIsOpenAC(isOpen))
+  }
+}
+export const setNewGrade = (groupName, studentName, subject, dateMonth, dateNum, grade, comment) => {
+  const dateApi = `${new Date().getFullYear()}.${dateMonth}.${dateNum}`
   return (dispatch) => {
     dispatch(toggleModalIsFetching(true))
-    return GroupApi.setGrade(groupName, subject, studentName, `${new Date().getFullYear()}.${dateMonth}.${dateNum}`, grade).then(data => {
-      dispatch(toggleModalIsFetching(false))
-      dispatch(setSubject(groupName, subject, dateMonth))
+    return GroupApi.setGrade(groupName, subject, studentName, dateApi, grade, comment).then(() => {
+      dispatch(setSubject(groupName, subject, dateMonth)).then(() => {
+        dispatch(toggleModalIsFetching(false))
+      })
     })
   }
 }

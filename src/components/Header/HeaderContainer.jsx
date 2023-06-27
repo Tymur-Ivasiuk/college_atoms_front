@@ -10,7 +10,7 @@ class HeaderContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentTitle: state.navigate.currentTitle,
+    
   }
 }
 

@@ -22,16 +22,8 @@ function App() {
               <Route path='/login' element={<Login />}/>
           </Routes>
         </div>
-
       </main>
-
     </>
-
-    // <SimpleDropdown
-    //   options={data}
-    //   searchable
-    //   configs={{ position: { y: "bottom", x: "center" } }}
-    // />
   );
 }
 

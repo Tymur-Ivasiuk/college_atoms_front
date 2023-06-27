@@ -23,41 +23,81 @@ const Gradebook = (props) => {
 
   return (
     <>
-      <div className={s.tab_info}>
-        <Select
-          options={props.groupsNameList.map((groupName) => ({
-            label: groupName,
-            value: groupName,
-          }))}
-          searchable={true}
-          onChange={groupChange}
-        />
-        <Select
-          options={props.subjectsList.map((subject) => ({
-            label: subject,
-            value: subject,
-          }))}
-          isDisabled={!Boolean(props.groupName)}
-          onChange={subjectChange}
-        />
-      </div>
+      {/* <div className={s.tab_info}></div> */}
       <ScrollSync>
         <div className={s.table}>
-          <div className={s.table_header}>
-            <img src={arrow} onClick={() => props.setMonth(props.groupName, props.subject, dateMonth-1)} className={s.arrow}></img>
-            {date.toLocaleString("ua", { month: "long" })}
-            <img src={arrow} onClick={() => props.setMonth(props.groupName, props.subject, dateMonth+1)} className={s.arrow}></img>
-          </div>
-          <div className={s.table_dates}>
-            <ScrollSyncPane group="horizontal">
-              <div className={s.dates}>
-                {Array.from(Array(getDaysInCurrentMonth(date)).keys()).map(
-                  (day) => {
-                    return <div className={s.date}>{day + 1}</div>;
+          <div className={s.table_header_wrap}>
+            <div className={s.table_header_selects}>
+              <Select
+                options={props.groupsNameList.map((groupName) => ({
+                  label: groupName,
+                  value: groupName,
+                }))}
+                placeholder='Оберіть групу ...'
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    fontWeight: 'bold'
+                  }),
+                }}
+                searchable={true}
+                onChange={groupChange}
+              />
+              <Select
+                options={props.subjectsList.map((subject) => ({
+                  label: subject,
+                  value: subject,
+                }))}
+                placeholder='Оберіть предмет ...'
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    fontWeight: 'bold'
+                  }),
+                }}
+                isDisabled={!Boolean(props.groupName)}
+                onChange={subjectChange}
+              />
+            </div>
+
+            <div className={s.table_header_info}>
+              <div className={s.table_header}>
+                <img
+                  src={arrow}
+                  onClick={() =>
+                    props.setMonth(
+                      props.groupName,
+                      props.subject,
+                      dateMonth - 1
+                    )
                   }
-                )}
+                  className={s.arrow}
+                ></img>
+                {date.toLocaleString("ua", { month: "long" })}
+                <img
+                  src={arrow}
+                  onClick={() =>
+                    props.setMonth(
+                      props.groupName,
+                      props.subject,
+                      dateMonth + 1
+                    )
+                  }
+                  className={s.arrow}
+                ></img>
               </div>
-            </ScrollSyncPane>
+              <div className={s.table_dates}>
+                <ScrollSyncPane group="horizontal">
+                  <div className={s.dates}>
+                    {Array.from(Array(getDaysInCurrentMonth(date)).keys()).map(
+                      (day) => {
+                        return <div className={s.date}>{day + 1}</div>;
+                      }
+                    )}
+                  </div>
+                </ScrollSyncPane>
+              </div>
+            </div>
           </div>
           <div className={s.table_body}>
             {props.students.map((student) => {
@@ -70,14 +110,6 @@ const Gradebook = (props) => {
                 />
               );
             })}
-            {/* <Student
-              studentsName={"Івасюк Тимур Віталійович"}
-              clickGrade={props.clickGrade}
-            />
-            <Student
-              studentsName={"Гой Владислав Іванович"}
-              clickGrade={props.clickGrade}
-            /> */}
           </div>
         </div>
       </ScrollSync>
@@ -87,6 +119,12 @@ const Gradebook = (props) => {
 
 
 const Student = (props) => {
+  const markClick = (index, grade, comment) => {
+    return () => {
+      props.clickGrade(props.studentsName, index, grade, comment)
+    }
+  }
+
   return (
     <div className={s.table_row}>
       <div className={s.student_name}>{props.studentsName}</div>
@@ -94,12 +132,22 @@ const Student = (props) => {
         <div className={s.marks}>
           {props.grades.map((mark, index) => {
             return (
-              <div className={s.mark} 
-                onClick={() => props.clickGrade(props.studentsName, index+1, mark)}>{mark}</div>
-            )
+              <div
+                className={s.mark}
+                onClick={markClick(index + 1, mark.grade, mark.comment)}
+              >
+                {mark.grade}
+                {mark.comment && (
+                  <>
+                    <div className={s.mark_indicator}></div>
+                    <div className={s.mark_comment}>
+                      {mark.comment}
+                    </div>
+                  </>
+                )}
+              </div>
+            );
           })}
-          {/* <div class="mark"></div> */}
-          
         </div>
       </ScrollSyncPane>
     </div>

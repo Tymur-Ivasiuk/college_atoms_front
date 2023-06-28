@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+Посилання на таблицю: https://docs.google.com/spreadsheets/d/1jz2jgGRwVNoWteTJBQgdi5lidWAjQuQKfwDx_V-IDp8/edit#gid=728526781
+
+Посилання на Google Apps Script: https://script.google.com/home/projects/1_RlrRRA3G0Uxs4SNVBwqdr0Gj3Yh2CjqaTb1OG_trFcanksB2Ggbma9x/edit
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

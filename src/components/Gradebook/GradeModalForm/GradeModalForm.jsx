@@ -86,7 +86,7 @@ class ModalForm extends React.Component {
                     type="text"
                     onChange={this.gradeChange}
                     value={this.state.gradeValue}
-                    placeholder="Grade ..."
+                    placeholder="Оцінка ..."
                     autoFocus={true}
                   />
                   <div className={s.error_grade}>{this.state.error}</div>
@@ -96,7 +96,7 @@ class ModalForm extends React.Component {
                     type="text"
                     onChange={this.commentChange}
                     value={this.state.comment}
-                    placeholder="Comment ..."
+                    placeholder="Коментарі ..."
                   />
                 </div>
               </div>

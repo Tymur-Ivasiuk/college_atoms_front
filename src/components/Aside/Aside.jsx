@@ -15,6 +15,7 @@ const Aside = (props) => {
   return (
     <aside className={s.asside}>
       <AsideItem {...props} link="/gradebook" linkName="Журнал оцінок"/>
+      <AsideItem {...props} link="/group_manager" linkName="Менеджер груп"/>
     </aside>
   );
 }

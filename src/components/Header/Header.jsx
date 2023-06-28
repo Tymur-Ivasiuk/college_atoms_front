@@ -15,6 +15,10 @@ const Header = (props) => {
       header_title = "Логін"
       break
 
+    case "/group_manager":
+      header_title = "Менеджер груп"
+      break
+
     default:
       header_title = "Головна"
   }

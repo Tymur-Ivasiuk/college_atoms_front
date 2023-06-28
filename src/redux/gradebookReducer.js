@@ -8,6 +8,7 @@ const SET_SUBJECT = "SET_SUBJECT";
 const TOGGLE_MODAL_IS_FETCHING = "TOGGLE_MODAL_IS_FETCHING";
 const SET_DATE_MONTH = "SET_DATE_MONTH";
 const SET_MODAL_IS_OPEN = "SET_MODAL_IS_OPEN";
+const CLEAR_STUDENTS_GRADES = "CLEAR_STUDENTS_GRADES";
 
 let initialState = {
   groupsNameList: [],
@@ -71,6 +72,12 @@ const gradebookReducer = (state = initialState, action) => {
         modalIsOpen: action.isOpen,
       }
 
+    case CLEAR_STUDENTS_GRADES:
+      return {
+        ...state,
+        students: [...state.students].map(student => ({...student, grades: []}))
+      }
+
     default:
       return state;
   }
@@ -130,6 +137,11 @@ export const setModalIsOpenAC = (isOpen) => {
     isOpen,
   }
 }
+export const clearStudentsGrades = () => {
+  return {
+    type: CLEAR_STUDENTS_GRADES,
+  }
+}
 
 export const getGroups = () => {
   return (dispatch) => {
@@ -150,6 +162,7 @@ export const setGroupName = (groupName) => {
 export const setSubject = (groupName, subject, month) => {
   return (dispatch) => {
     dispatch(setSubjectAC(subject))
+    dispatch(clearStudentsGrades())
     return GroupApi.getStudentsGrades(groupName, subject, month).then(data => {
       dispatch(setStudentGrades(data.studentsGrades))
     })

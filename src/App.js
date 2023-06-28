@@ -5,6 +5,7 @@ import Aside from './components/Aside/Aside';
 import { Route, Routes } from 'react-router-dom';
 import GradebookContainer from './components/Gradebook/GradebookContainer';
 import Login from './components/Login/Login';
+import GroupManagerContainer from './components/GroupManager/GroupManagerContainer';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <div class="content">
           <Routes>
               <Route path='/gradebook' element={<GradebookContainer />}/>
+              <Route path='/group_manager' element={<GroupManagerContainer />}/>
               <Route path='/login' element={<Login />}/>
           </Routes>
         </div>

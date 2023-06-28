@@ -46,5 +46,20 @@ export const GroupApi = {
 
     //giveGradeToTheStudent("32-RS", "Прога", "Білецький Максим Володимирович", "2022.08.04", 12)
     return instance.post('', params).then(response => response.data)
+  },
+
+  getGroupsListDetails() {
+    const params = new URLSearchParams();
+    params.append("actionType", "GET_GROUPS_LIST_DETAILS")
+
+    return instance.post('', params).then(response => response.data)
+  },
+  addSubjectToGroup(groupName, subject) {
+    const params = new URLSearchParams();
+    params.append("actionType", "ADD_NEW_SUBJECT")
+    params.append("groupName", groupName)
+    params.append("subject", subject)
+
+    return instance.post('', params).then(response => response.data)
   }
 }

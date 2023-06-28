@@ -6,10 +6,12 @@ import {
 import thunkMiddleware from "redux-thunk";
 import authReducer from "./authReducer";
 import gradebookReducer from "./gradebookReducer";
+import groupManagerReducer from "./groupManagerReducer";
 
 let reducers = combineReducers({
   auth: authReducer,
   gradebook: gradebookReducer,
+  groupManager: groupManagerReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

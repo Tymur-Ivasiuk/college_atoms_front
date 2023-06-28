@@ -1,0 +1,165 @@
+.group_manager_wrap {
+  height: 100%;
+  overflow: hidden;
+}
+
+.header_group_manager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.header_group_manager > h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.header_group_manager > button {
+  background: #5d9cec;
+  color: #fff;
+  font-size: 20px;
+  padding: 7.5px 15px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+.header_group_manager > button:hover,
+.header_group_manager > button:active,
+.header_group_manager > button:focus {
+  background: #3d74bb;
+} 
+.header_group_manager > button > i {
+  margin-right: 7px;
+}
+
+
+/* groups */
+.groups_list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  overflow-y: scroll;
+  height: calc(100% - 89px);
+}
+.groups_list::-webkit-scrollbar {
+  display: none;
+}
+.group_info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #fff;
+}
+
+.group_name {
+  flex: 1;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  width: fit-content;
+}
+.group_average_grade {
+  min-width: 60px;
+  border-radius: 8px;
+  text-align: center;
+  width: fit-content;
+  background: #000;
+  color: #fff;
+  padding: 7px 10px;
+}
+.group_buttons {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+.group_button {
+  background: #5ab6b3;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+.group_button_close {
+  background: #e17373 !important;
+}
+.group_button > i {
+  margin-right: 5px;
+}
+.group_button:hover,
+.group_button:active,
+.group_button:focus {
+  background: #439794;
+} 
+
+
+/* group detail */
+.group_detail {
+  margin-top: 10px;
+  margin-left: 75px;
+  display: flex;
+  gap: 15px;
+}
+.group_detail_block {
+  flex: 1;
+  background: #f1f1f1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  height: fit-content;
+}
+.group_detail_block_header {
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* text-align: center; */
+}
+.group_detail_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 10px;
+  height: 40px;
+}
+.group_detail_item_name {
+  font-size: 16px;
+}
+.group_detail_button {
+  background: #5ab6b3;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+.group_detail_student_average_grade {
+  padding: 2.5px 5px;
+  background: #000;
+  color: #fff;
+  min-width: 50px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+
+.group_subjects {
+  flex: 1;
+}
+
+.group_loader {
+  display: block;
+  width: 20%;
+  margin: 0 auto;
+}
